@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding="ISO-8859-1"?>
+<jtlshop3plugin>
+    <Name>Endereco Telefonnummern</Name>
+    <Description>Mit dem Plugin kann man die Abfrage der Telefonnummer nur für bestimmte Länder aktivieren und bestimmen, ob die Eingabe der Nummer verpflichtend oder optional ist. Zusätzlich kann die Nummer automatisch formatiert und geprüft werden.</Description>
+    <Author>Ilja Weber</Author>
+    <URL>https://www.endereco.de</URL>
+    <XMLVersion>101</XMLVersion>
+    <Shop4Version>400</Shop4Version>
+    <PluginID>endereco_jtl4_phs</PluginID>
+    <Install>
+        <Version nr="100">
+            <CreateDate>2021-11-01</CreateDate>
+            <SQL>install-100.sql</SQL>
+        </Version>
+        <Hooks>
+            <Hook id="140">140_endereco_jtl4_phs.php</Hook>
+            <Hook id="213">213_endereco_jtl4_phs.php</Hook>
+        </Hooks>
+        <Adminmenu>
+            <Customlink sort="1">
+                <Name>Funktionsumfang</Name>
+                <Filename>functions.php</Filename>
+            </Customlink>
+            <Customlink sort="2">
+                <Name>Länderkonfiguration</Name>
+                <Filename>countries.php</Filename>
+            </Customlink>
+            <Customlink sort="3">
+                <Name>Entwicklereinstellungen</Name>
+                <Filename>settings.php</Filename>
+            </Customlink>
+        </Adminmenu>
+        <Locales>
+            <Variable>
+                <VariableLocalized iso="GER">Die eingegebene Nummer ist ungültig.</VariableLocalized>
+                <VariableLocalized iso="ENG">The entered number is invalid.</VariableLocalized>
+                <Description></Description>
+                <Name>endereco_jtl4_phs_phone_invalid</Name>
+            </Variable>
+            <Variable>
+                <VariableLocalized iso="GER">Die Nummer ist falsch formatiert. Wir erwarten eine Nummer im Format {$requiredFormat}. z.B. {$correctNumber}.</VariableLocalized>
+                <VariableLocalized iso="ENG">The number is formatted incorrectly. We expect a number in {$requiredFormat} format. e.g. {$correctNumber}.</VariableLocalized>
+                <Description></Description>
+                <Name>endereco_jtl4_phs_phone_format_needs_correction</Name>
+            </Variable>
+            <Variable>
+                <VariableLocalized iso="GER">Statt einer Festnetznummer wurde eine Mobilfunknummer eingegeben.</VariableLocalized>
+                <VariableLocalized iso="ENG">A mobile phone number was entered instead of a landline number.</VariableLocalized>
+                <Description></Description>
+                <Name>endereco_jtl4_phs_phone_wrong_type_mobile</Name>
+            </Variable>
+            <Variable>
+                <VariableLocalized iso="GER">Statt einer Mobilfunknummer wurde eine Festnetznummer eingegeben.</VariableLocalized>
+                <VariableLocalized iso="ENG">A landline number was entered instead of a mobile phone number.</VariableLocalized>
+                <Description></Description>
+                <Name>endereco_jtl4_phs_phone_wrong_type_fixed</Name>
+            </Variable>
+            <Variable>
+                <VariableLocalized iso="GER">Die Telefonnummer wird geprüft, bitte warten...</VariableLocalized>
+                <VariableLocalized iso="ENG">The phone number is being checked, please wait...</VariableLocalized>
+                <Description></Description>
+                <Name>endereco_jtl4_phs_phone_is_being_checked</Name>
+            </Variable>
+            <Variable>
+                <VariableLocalized iso="GER">Für die Zustellung ist eine gültige Festnetznummer notwendig.</VariableLocalized>
+                <VariableLocalized iso="ENG">A valid landline number is required for delivery.</VariableLocalized>
+                <Description></Description>
+                <Name>endereco_jtl4_phs_phone_invalid_fixed</Name>
+            </Variable>
+            <Variable>
+                <VariableLocalized iso="GER">Für die Zustellung ist eine gültige Mobilfunknummer notwendig.</VariableLocalized>
+                <VariableLocalized iso="ENG">A valid mobile phone number is required for delivery.</VariableLocalized>
+                <Description></Description>
+                <Name>endereco_jtl4_phs_phone_invalid_mobile</Name>
+            </Variable>
+            <Variable>
+                <VariableLocalized iso="GER">Die Festnetznummer muss im Format {$requiredFormat} geschrieben werden.</VariableLocalized>
+                <VariableLocalized iso="ENG">The landline number must be written in {$requiredFormat} format.</VariableLocalized>
+                <Description></Description>
+                <Name>endereco_jtl4_phs_phone_format_needs_correction_fixed</Name>
+            </Variable>
+            <Variable>
+                <VariableLocalized iso="GER">Die Mobilfunknummer muss im Format {$requiredFormat} geschrieben werden.</VariableLocalized>
+                <VariableLocalized iso="ENG">The mobile number must be written in {$requiredFormat} format.</VariableLocalized>
+                <Description></Description>
+                <Name>endereco_jtl4_phs_phone_format_needs_correction_mobile</Name>
+            </Variable>
+            <Variable>
+                <VariableLocalized iso="GER">Bitte korrigieren Sie die Telefonnummer.</VariableLocalized>
+                <VariableLocalized iso="ENG">Please correct you phone number.</VariableLocalized>
+                <Description></Description>
+                <Name>endereco_jtl4_phs_please_correct</Name>
+            </Variable>
+            <Variable>
+                <VariableLocalized iso="GER">Bei weiteren Fragen kontaktieren Sie bitte den Support.</VariableLocalized>
+                <VariableLocalized iso="ENG">If you have questions, write to our support.</VariableLocalized>
+                <Description></Description>
+                <Name>endereco_jtl4_phs_contact_support</Name>
+            </Variable>
+            <Variable>
+                <VariableLocalized iso="GER">Die Nummer ist korrekt.</VariableLocalized>
+                <VariableLocalized iso="ENG">The number is correct.</VariableLocalized>
+                <Description></Description>
+                <Name>endereco_jtl4_phs_phone_correct</Name>
+            </Variable>
+        </Locales>
+    </Install>
+</jtlshop3plugin>
