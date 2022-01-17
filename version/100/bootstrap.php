@@ -154,6 +154,16 @@ class Bootstrap extends \AbstractPlugin {
             1
         );
 
+        // Activate phone fields.
+        Shop::DB()->queryPrepared(
+            "UPDATE `teinstellungen` SET
+                    `cWert` = 'O'
+                    WHERE `cName` IN ('kundenregistrierung_abfragen_mobil', 'kundenregistrierung_abfragen_tel', 'lieferadresse_abfragen_tel', 'lieferadresse_abfragen_mobil')",
+            [
+            ],
+            1
+        );
+
         return;
 
     }

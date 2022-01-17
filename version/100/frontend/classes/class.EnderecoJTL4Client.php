@@ -52,8 +52,10 @@ class EnderecoJTL4Client
     public function checkPhoneNumber(EnderecoPhoneNumber &$phoneNumber)
     {
         // Check in the database, if the number was checked already.
+        $daysToInvalid = (int) $this->settings['invalidateAfterDays'];
+
         $cachedPhoneNumber = \Shop::DB()->queryPrepared(
-            "SELECT * FROM `xplugin_endereco_jtl4_phs_checked_numbers` WHERE `number` = :a1 AND `format` = :a2 AND `country` = :a3 AND `last_change_at` > (NOW() - INTERVAL 24 HOUR) LIMIT 1",
+            "SELECT * FROM `xplugin_endereco_jtl4_phs_checked_numbers` WHERE `number` = :a1 AND `format` = :a2 AND `country` = :a3 AND `last_change_at` >= subdate(NOW(), $daysToInvalid) LIMIT 1",
             [
                 'a1' => $phoneNumber->number,
                 'a2' => $phoneNumber->getRequiredFormat(),

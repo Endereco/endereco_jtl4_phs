@@ -5,9 +5,7 @@
     },
     $originalValues: {},
     deliverySeparated: {if $endtwoaddr} true {else} false {/if},
-    $phoneCache: {
-
-    },
+    $phoneCache: {},
     $pendingSubmit: false,
     $hasSubmitListener: false,
     $globalValues: {

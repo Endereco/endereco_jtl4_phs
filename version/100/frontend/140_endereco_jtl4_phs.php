@@ -24,6 +24,7 @@ if (pq('[type="tel"]')->length) {
     }
     $file = $oPlugin->cFrontendPfad . 'template/headprepend.tpl';
 
+    $statusInfos = [];
     // Load status info for the phones.
     if (!empty($_SESSION['Lieferadresse']->cTel)){
         $PhoneNumberFix = new EnderecoPhoneNumber($_SESSION['Lieferadresse']->cTel, 'fixed', $_SESSION['Lieferadresse']->cLand, $oPlugin);
@@ -45,21 +46,25 @@ if (pq('[type="tel"]')->length) {
     }
 
     if (empty($_SESSION['Lieferadresse'])) {
-        $PhoneNumberFix = new EnderecoPhoneNumber($_SESSION['Kunde']->cTel, 'fixed', $_SESSION['Kunde']->cLand, $oPlugin);
-        $EnderecoClient->checkPhoneNumber($PhoneNumberFix);
-        $statusInfos[$PhoneNumberFix->number] = [
-            'isCorrect' => $PhoneNumberFix->isCorrect(),
-            'errorMessages' => $PhoneNumberFix->getErrorTexts(),
-            'successMessages' => $PhoneNumberFix->getSuccessTexts(),
-        ];
+        if (!empty($_SESSION['Kunde']->cTel)) {
+            $PhoneNumberFix = new EnderecoPhoneNumber($_SESSION['Kunde']->cTel, 'fixed', $_SESSION['Kunde']->cLand, $oPlugin);
+            $EnderecoClient->checkPhoneNumber($PhoneNumberFix);
+            $statusInfos[$PhoneNumberFix->number] = [
+                'isCorrect' => $PhoneNumberFix->isCorrect(),
+                'errorMessages' => $PhoneNumberFix->getErrorTexts(),
+                'successMessages' => $PhoneNumberFix->getSuccessTexts(),
+            ];
+        }
 
-        $PhoneNumberMobile = new EnderecoPhoneNumber($_SESSION['Kunde']->cMobil, 'mobil', $_SESSION['Kunde']->cLand, $oPlugin);
-        $EnderecoClient->checkPhoneNumber($PhoneNumberMobile);
-        $statusInfos[$PhoneNumberMobile->number] = [
-            'isCorrect' => $PhoneNumberMobile->isCorrect(),
-            'errorMessages' => $PhoneNumberMobile->getErrorTexts(),
-            'successMessages' => $PhoneNumberMobile->getSuccessTexts(),
-        ];
+        if (!empty($_SESSION['Kunde']->cMobil)) {
+            $PhoneNumberMobile = new EnderecoPhoneNumber($_SESSION['Kunde']->cMobil, 'mobil', $_SESSION['Kunde']->cLand, $oPlugin);
+            $EnderecoClient->checkPhoneNumber($PhoneNumberMobile);
+            $statusInfos[$PhoneNumberMobile->number] = [
+                'isCorrect' => $PhoneNumberMobile->isCorrect(),
+                'errorMessages' => $PhoneNumberMobile->getErrorTexts(),
+                'successMessages' => $PhoneNumberMobile->getSuccessTexts(),
+            ];
+        }
     }
 
     $translations = [];
