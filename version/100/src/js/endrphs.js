@@ -17,7 +17,7 @@ if (typeof window !== 'undefined') {
     const $lafixPhoneField = document.querySelector(window.EnderecoPhone.settings.lafix.s);
     const $lamobPhoneField = document.querySelector(window.EnderecoPhone.settings.lamob.s);
 
-    if (event.type === 'DOMContentLoaded') {
+    if (!!event && !!event.type && event.type === 'DOMContentLoaded') {
       isDeliveryVisible = window.EnderecoPhone.deliverySeparated;
     } else {
       isDeliveryVisible = $lafixActive || $lamobActive;
@@ -135,7 +135,7 @@ if (typeof window !== 'undefined') {
           $rqField.classList.add('has-success');
         }
 
-        if (event.type === 'DOMContentLoaded') {
+        if (!!event && !!event.type && event.type === 'DOMContentLoaded') {
           $countrySelect.addEventListener('change', window.calcEnrdPhs);
 
           $phoneField.addEventListener('blur', (e) => {
@@ -187,7 +187,7 @@ if (typeof window !== 'undefined') {
       }
     });
 
-    if (event.type === 'DOMContentLoaded' && document.querySelector(window.EnderecoPhone.settings.other.latog)) {
+    if (!!event && !!event.type && event.type === 'DOMContentLoaded' && document.querySelector(window.EnderecoPhone.settings.other.latog)) {
       document.querySelector(window.EnderecoPhone.settings.other.latog).addEventListener('change', (e) => {
         setTimeout(() => {
           window.calcEnrdPhs(e);
